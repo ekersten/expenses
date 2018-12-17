@@ -20,6 +20,9 @@ class Category(TimeStampedModel):
     name = models.CharField(max_length=255)
     user = models.ForeignKey(User, related_name='categories', on_delete=models.deletion.CASCADE)
 
+    def __str__(self):
+        return self.name
+
 
 class Expense(TimeStampedModel):
     amount = models.DecimalField(max_digits=7, decimal_places=2)
@@ -27,3 +30,6 @@ class Expense(TimeStampedModel):
     date = models.DateField()
     note = models.TextField()
     user = models.ForeignKey(User, related_name='expenses', on_delete=models.deletion.CASCADE)
+
+    def __str__(self):
+        return '%s %s %s'.format(self.amount, self.category.name, self.date)
