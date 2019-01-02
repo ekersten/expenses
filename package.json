@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack --mode development ./frontend/src/index.js --output ./frontend/static/frontend/main.js",
+    "watch": "webpack --mode development ./frontend/src/index.js --output ./frontend/static/frontend/main.js --watch",
     "build": "webpack --mode production ./frontend/src/index.js --output ./frontend/static/frontend/main.js"
   },
   "repository": {
@@ -29,5 +30,16 @@
     "react-dom": "^16.7.0",
     "webpack": "^4.27.1",
     "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bootstrap": "^4.2.1",
+    "css-loader": "^2.1.0",
+    "moment": "^2.23.0",
+    "node-sass": "^4.11.0",
+    "numeral": "^2.0.6",
+    "reactstrap": "^7.0.2",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1"
   }
 }

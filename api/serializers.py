@@ -10,10 +10,11 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Category
-        fields = ('url','name')
+        fields = ('url', 'name')
 
 
 class ExpenseSerializer(serializers.HyperlinkedModelSerializer):
+    category = serializers.StringRelatedField()
     class Meta:
         model = Expense
-        fields = ('url','amount','category','date','note', 'created', 'modified')
+        fields = ('id', 'amount', 'category', 'date', 'note', 'created', 'modified')
