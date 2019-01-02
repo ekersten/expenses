@@ -16,4 +16,4 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
 class ExpenseSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Expense
-        fields = ('url','amount','category','date','note')
+        fields = ('url','amount','category','date','note', 'created', 'modified')
