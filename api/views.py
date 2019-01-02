@@ -1,6 +1,8 @@
 from core.models import User, Category, Expense
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
 from api.serializers import UserSerializer, CategorySerializer, ExpenseSerializer
+from django_filters.rest_framework import DjangoFilterBackend
+
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -29,6 +31,15 @@ class ExpenseViewSet(viewsets.ModelViewSet):
     API endpoint that allos expenses to be viewed or edited.
     """
     serializer_class = ExpenseSerializer
+    filter_backends = (
+        DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter
+    )
+
+    filter_fields = ('date', 'category')
+    search_fields = ('note',)
+    ordering_fields = ('date', 'created')
 
     def get_queryset(self):
         if self.request.user.is_authenticated:
