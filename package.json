@@ -21,23 +21,25 @@
   "homepage": "https://github.com/ekersten/expenses#readme",
   "devDependencies": {
     "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.2.0",
+    "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.4",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "webpack": "^4.27.1",
-    "webpack-cli": "^3.1.2"
+    "webpack": "^4.28.3",
+    "webpack-cli": "^3.2.0"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.2.1",
     "css-loader": "^2.1.0",
+    "font-awesome": "^4.7.0",
     "moment": "^2.23.0",
     "node-sass": "^4.11.0",
     "numeral": "^2.0.6",
+    "react-select": "^2.2.0",
     "reactstrap": "^7.0.2",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1"

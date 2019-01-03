@@ -25,7 +25,7 @@ class ExpenseList extends React.Component {
             <React.Fragment>
             <h1>Expense List</h1>
             {this.state.expenses.length > 0 ? (
-                <Table striped>
+                <Table striped responsive bordered hover>
                     <thead>
                         <tr>
                             <th>Monto</th>
