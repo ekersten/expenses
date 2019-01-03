@@ -62,7 +62,7 @@ class ExpenseForm extends React.Component {
                             <InputGroupAddon addonType="prepend">
                                 <InputGroupText><i className="fas fa-coins"></i></InputGroupText>
                             </InputGroupAddon>
-                            <Input type="number" placeholder="0.00"/>
+                            <Input type="number" min="0.00" placeholder="0.00" step="0.01"/>
                         </InputGroup>
                     </FormGroup>
 
