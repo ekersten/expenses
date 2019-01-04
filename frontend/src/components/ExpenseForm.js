@@ -22,7 +22,7 @@ class ExpenseForm extends React.Component {
     componentDidMount() {
         axios.get('/api/categories').then(response => {
             this.setState(state => {
-                return {categories: response.data}
+                return {categories: response.data.result}
             })
         })
     }

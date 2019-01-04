@@ -1,30 +1,15 @@
 import React from 'react'
-import axios from 'axios'
-import numeral from 'numeral'
-import moment from 'moment';
+import { connect } from 'react-redux'
 import { Table } from 'reactstrap'
+import ExpenseItem from './ExpenseItem'
 
 class ExpenseList extends React.Component {
-
-    state = {
-        expenses: []
-    }
-
-    componentDidMount() {
-        axios.get('/api/expenses').then((response) => {
-            this.setState((state) => {
-                return {
-                    expenses: response.data
-                }
-            })
-        })
-    }
 
     render() {
         return (
             <React.Fragment>
             <h1>Expense List</h1>
-            {this.state.expenses.length > 0 ? (
+            {this.props.expenses.length > 0 ? (
                 <Table striped responsive bordered hover>
                     <thead>
                         <tr>
@@ -36,13 +21,8 @@ class ExpenseList extends React.Component {
                         
                     </thead>
                     <tbody>
-                        {this.state.expenses.map(expense => (
-                            <tr key={expense.id}>
-                                <td>{numeral(expense.amount).format('$0,0.00')}</td>
-                                <td>{expense.category}</td>
-                                <td>{moment(expense.date).format('DD/MM/YYYY')}</td>
-                                <td>{expense.note}</td>
-                            </tr>
+                        {this.props.expenses.map(expense => (
+                            <ExpenseItem expense={expense}/>
                         ))}
                     </tbody>
                 </Table>
@@ -55,4 +35,10 @@ class ExpenseList extends React.Component {
 
 }
 
-export default ExpenseList
+const mapStateToProps = (state) => {
+    return {
+        expenses: state.expenses
+    }
+}
+
+export default connect(mapStateToProps)(ExpenseList)
