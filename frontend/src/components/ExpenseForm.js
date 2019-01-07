@@ -8,42 +8,71 @@ import {
     InputGroupText,
     Button
 } from 'reactstrap'
+import { connect } from 'react-redux'
 import Select from 'react-select'
 import axios from 'axios'
 import moment from 'moment'
 
+import { startAddExpense } from '../actions/expenses'
+
 class ExpenseForm extends React.Component {
 
     state = {
-        categories: [],
-        selectedOption: null
+        category_id: undefined,
+        date: moment().format('YYYY-MM-DD'),
+        amount: undefined,
+        note: undefined,
+        selectedOption: undefined
     }
 
-    componentDidMount() {
-        axios.get('/api/categories').then(response => {
-            this.setState(state => {
-                return {categories: response.data.result}
-            })
-        })
-    }
-
-    handleChange = (selectedOption, selectedValue) => {
-        console.log(`Option selected:`, selectedOption)
-        console.log(`Option selected:`, selectedValue)
+    handleCategoryChange = (e) => {
+        const category_id = e.value
         this.setState(state => {
             return {
-                selectedOption
+                category_id,
+                selectedOption: e
             }
         })
     }
 
-    handleCreate = (inputValue) => {
-        console.log(inputValue)
+    handleAmountChange = (e) => {
+        const amount = e.target.value
+        this.setState(state => {
+            return {
+                amount
+            }
+        })
+    }
+
+    handleNoteChange = (e) => {
+        const note = e.target.value
+        this.setState(state => {
+            return {
+                note
+            }
+        })
+    }
+
+    handleDateChange = (e) => {
+        const date = e.target.value
+        this.setState(state => {
+            return {
+                date
+            }
+        })
+    }
+
+    handleSubmit = () => {
+        startAddExpense({
+            category: this.state.category_id,
+            amount: parseFloat(this.state.amount),
+            note: this.state.note,
+            date: this.state.date
+        })
     }
 
     render() {
-        const { categories, selectedOption } = this.state
-        const today = new Date()
+        const { selectedOption } = this.state
         return (
             <React.Fragment>
                 <h1>Expense Form</h1>
@@ -53,7 +82,7 @@ class ExpenseForm extends React.Component {
                             <InputGroupAddon addonType="prepend">
                                 <InputGroupText><i className="far fa-calendar-alt"></i></InputGroupText>
                             </InputGroupAddon>
-                            <Input type="date" value={moment().format('YYYY-MM-DD')} placeholder="Fecha" />
+                            <Input id="date" type="date" value={this.state.date} placeholder="Fecha" onChange={this.handleDateChange} />
                         </InputGroup>
                     </FormGroup>
         
@@ -62,28 +91,34 @@ class ExpenseForm extends React.Component {
                             <InputGroupAddon addonType="prepend">
                                 <InputGroupText><i className="fas fa-coins"></i></InputGroupText>
                             </InputGroupAddon>
-                            <Input type="number" min="0.00" placeholder="0.00" step="0.01"/>
+                            <Input id="amount" type="number" min="0.00" placeholder="0.00" step="0.01" onChange={this.handleAmountChange}/>
                         </InputGroup>
                     </FormGroup>
 
                     <FormGroup>
-                        <Select
-                            isClearable
-                            onChange={this.handleChange}
-                            options={categories.map(category => ({
-                                value: category.id,
-                                label: category.name
-                            }))}
-                            selectedOption={selectedOption}
-                            placeholder="Categoría"
-                        />
+                        {this.props.categories.results && this.props.categories.results.length > 0 ? (
+                            <Select
+                                id="date"
+                                isClearable
+                                onChange={this.handleCategoryChange}
+                                options={this.props.categories.results.map(category => ({
+                                    value: category.id,
+                                    label: category.name
+                                }))}
+                                selectedOption={selectedOption}
+                                placeholder="Categoría"
+                            />
+                        ) : (
+                            null
+                        )}
+                        
                     </FormGroup>
 
                     <FormGroup>
-                        <Input type="textarea" placeholder="Nota"/>
+                        <Input type="textarea" id="note" placeholder="Nota" onChange={this.handleNoteChange}/>
                     </FormGroup>
 
-                    <Button color="primary" block>Guardar</Button>
+                    <Button color="primary" block onClick={this.handleSubmit}>Guardar</Button>
                     
                 </Form>
                 
@@ -94,4 +129,10 @@ class ExpenseForm extends React.Component {
 
 }
 
-export default ExpenseForm
+const mapStateToProps = (state) => {
+    return {
+        categories: state.categories
+    }
+}
+
+export default connect(mapStateToProps)(ExpenseForm)

@@ -9,7 +9,22 @@ export const setExpenses = (expenses) => ({
 export const startSetExpenses = () => {
     return (dispatch, getState) => {
         return axios.get('/api/expenses').then(response => {
-            dispatch(setExpenses(response.data.results))
+            dispatch(setExpenses(response.data))
         })
     };
 };
+
+export const addExpense = (expense) => ({
+    type: 'ADD_EXPENSE',
+    expense
+})
+
+export const startAddExpense = (expense) => {
+    console.log('startAddExpense', expense)
+    return (dispatch, getState) => {
+        return axios.post('/api/expenses', expense).then(response => {
+            // console.log(response)
+            dispatch(addExpense(response.data))
+        })
+    }
+}

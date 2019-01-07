@@ -9,20 +9,19 @@ class ExpenseList extends React.Component {
         return (
             <React.Fragment>
             <h1>Expense List</h1>
-            {this.props.expenses.length > 0 ? (
+            {this.props.expenses.results && this.props.expenses.results.length > 0 ? (
                 <Table striped responsive bordered hover>
                     <thead>
                         <tr>
                             <th>Monto</th>
                             <th>Categoría</th>
                             <th>Fecha</th>
-                            <th>Nota</th>
                         </tr>
                         
                     </thead>
                     <tbody>
-                        {this.props.expenses.map(expense => (
-                            <ExpenseItem expense={expense}/>
+                        {this.props.expenses.results.map(expense => (
+                            <ExpenseItem key={expense.id} expense={expense}/>
                         ))}
                     </tbody>
                 </Table>

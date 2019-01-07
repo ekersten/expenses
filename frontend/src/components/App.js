@@ -11,7 +11,7 @@ class App extends React.Component {
             <Container>
                 <Row>
                     <Col>
-                        Form
+                        <ExpenseForm/>
                     </Col>
                 </Row>
                 <Row>

@@ -10,7 +10,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Category
-        fields = ('url', 'name')
+        fields = ('id', 'name')
 
 
 class ExpenseSerializer(serializers.HyperlinkedModelSerializer):
