@@ -4,11 +4,15 @@ import App from './components/App'
 
 import { Provider } from 'react-redux'
 import configureStore from './store/configureStore'
+import axios from 'axios';
 
 import { startSetExpenses } from './actions/expenses'
 import { startSetCategories } from './actions/categoeries'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
+
+axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+axios.defaults.xsrfCookieName = "csrftoken";
 
 const store = configureStore()
 

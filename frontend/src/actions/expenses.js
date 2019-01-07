@@ -21,8 +21,8 @@ export const addExpense = (expense) => ({
 
 export const startAddExpense = (expense) => {
     return (dispatch, getState) => {
-        return axios.post('/api/expenses', expense).then(response => {
-            // console.log(response)
+        return axios.post('/api/expenses/', expense).then(response => {
+            console.log(response)
             dispatch(addExpense(response.data))
         })
     }

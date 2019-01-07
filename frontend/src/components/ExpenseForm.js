@@ -63,7 +63,7 @@ class ExpenseForm extends React.Component {
     }
 
     handleSubmit = () => {
-        startAddExpense({
+        this.props.startAddExpense({
             category: this.state.category_id,
             amount: parseFloat(this.state.amount),
             note: this.state.note,
@@ -135,4 +135,8 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(ExpenseForm)
+const mapDispatchToProps = (dispatch) => ({
+    startAddExpense: (expense) => dispatch(startAddExpense(expense))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExpenseForm)
