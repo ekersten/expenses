@@ -120,3 +120,5 @@ webpack-stats.json
 # static & uploads
 /uploads/
 /static/
+
+/frontend/static/frontend/main.js
