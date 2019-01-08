@@ -36,7 +36,7 @@ class ExpenseForm extends React.Component {
     }
 
     handleAmountChange = (e) => {
-        const amount = e.target.value
+        const amount = parseFloat(e.target.value)
         this.setState(state => {
             return {
                 amount
@@ -91,7 +91,7 @@ class ExpenseForm extends React.Component {
                             <InputGroupAddon addonType="prepend">
                                 <InputGroupText><i className="fas fa-coins"></i></InputGroupText>
                             </InputGroupAddon>
-                            <Input id="amount" type="number" min="0.00" placeholder="0.00" step="0.01" onChange={this.handleAmountChange}/>
+                            <Input id="amount" type="text" placeholder="0.00" onChange={this.handleAmountChange}/>
                         </InputGroup>
                     </FormGroup>
 
