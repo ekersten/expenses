@@ -36,6 +36,7 @@
     "bootstrap": "^4.2.1",
     "css-loader": "^2.1.0",
     "font-awesome": "^4.7.0",
+    "history": "^4.7.2",
     "moment": "^2.23.0",
     "node-sass": "^4.11.0",
     "numeral": "^2.0.6",

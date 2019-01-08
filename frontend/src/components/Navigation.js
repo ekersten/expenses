@@ -9,6 +9,8 @@ import {
     Collapse
 } from 'reactstrap'
 
+import { Link } from 'react-router-dom'
+
 class Navigation extends React.Component {
 
     state = {
@@ -16,7 +18,6 @@ class Navigation extends React.Component {
     }
 
     toggleOpen = () => {
-        console.log('toggle')
         this.setState(state => ({
             isOpen: !this.state.isOpen
         }))
@@ -26,13 +27,13 @@ class Navigation extends React.Component {
         return (
             <div>
             <Navbar color="dark" dark expand="md">
-                <NavbarBrand href="/">Gastos</NavbarBrand>
+                <Link to="/" className="navbar-brand">Gastos</Link>
                 <NavbarToggler onClick={this.toggleOpen}/>
                 <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav className="ml-auto" navbar>
-                        <NavItem>
-                            <NavLink href="/categories">Categorías</NavLink>
-                        </NavItem>
+                        <li className="nav-item">
+                            <Link to="/categories" className="nav-link">Categorías</Link>
+                        </li>
                     </Nav>
                 </Collapse>
             </Navbar>
