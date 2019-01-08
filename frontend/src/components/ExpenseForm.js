@@ -75,7 +75,7 @@ class ExpenseForm extends React.Component {
         const { selectedOption } = this.state
         return (
             <React.Fragment>
-                <h1>Expense Form</h1>
+                <h2>Nuevo gasto</h2>
                 <Form>
                     <FormGroup>
                         <InputGroup>

@@ -8,7 +8,7 @@ class ExpenseList extends React.Component {
     render() {
         return (
             <React.Fragment>
-            <h1>Expense List</h1>
+            <h2>Últimos Gastos</h2>
             {this.props.expenses.results && this.props.expenses.results.length > 0 ? (
                 <Table striped responsive bordered hover>
                     <thead>
